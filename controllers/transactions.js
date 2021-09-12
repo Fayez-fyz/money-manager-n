@@ -25,8 +25,8 @@ exports.getTransactions = async (req, res, next) => {
 // @access  Public
 exports.addTransaction = async (req, res, next) => {
   try {
-    const { text, amount } = req.body;
-   
+    const { text, amount,date } = req.body;
+    // req.body.userid = req.userid;
 
     const transaction = await Transaction.create(req.body);
   
@@ -35,19 +35,10 @@ exports.addTransaction = async (req, res, next) => {
       data: transaction
     }); 
   } catch (err) {
-    if(err.name === 'ValidationError') {
-      const messages = Object.values(err.errors).map(val => val.message);
-
-      return res.status(400).json({
-        success: false,
-        error: messages
-      });
-    } else {
-      return res.status(500).json({
-        success: false,
-        error: 'Server Error'
-      });
-    }
+    return res.status(500).json({
+      success: false,
+      error: 'Server Error'
+    });
   }
 }
 
