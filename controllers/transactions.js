@@ -25,7 +25,7 @@ exports.getTransactions = async (req, res, next) => {
 // @access  Public
 exports.addTransaction = async (req, res, next) => {
   try {
-    const { text, amount ,date } = req.body;
+    const { text, amount } = req.body;
     // req.body.userid = req.userid;
 
     const transaction = await Transaction.create(req.body);
