@@ -23,7 +23,7 @@ app.use(
     origin: "*",
   })
 );
-function authenticate(req, res, next) {
+exports.authenticate=(req, res, next) =>{
   try {
   // Check if the token is present
   // if present -> check if it is valid
@@ -130,7 +130,7 @@ app.post('/login', async function(req,res){
 //   app.use(morgan('dev'));
 // }
 
-app.use('/api/v1/transactions',[authenticate], transactions);
+app.use('/api/v1/transactions', transactions);
 
 // if(process.env.NODE_ENV === 'production') {
 //   app.use(express.static('client/build'));
