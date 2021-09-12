@@ -23,7 +23,7 @@ app.use(
     origin: "*",
   })
 );
-exports.authenticate=(req, res, next) =>{
+function authenticate(req, res, next) {
   try {
   // Check if the token is present
   // if present -> check if it is valid

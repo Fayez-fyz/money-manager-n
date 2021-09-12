@@ -1,11 +1,10 @@
 const Transaction = require('../models/Transaction');
 
-const authenticate = require('../authenticate');
 
 // @desc    Get all transactions
 // @route   GET /api/v1/transactions
 // @access  Public
-exports.getTransactions,[authenticate] = async (req, res, next) => {
+exports.getTransactions = async (req, res, next) => {
   try {
     const transactions = await Transaction.find();
 
@@ -56,7 +55,7 @@ exports.addTransaction = async (req, res, next) => {
 // @desc    Delete transaction
 // @route   DELETE /api/v1/transactions/:id
 // @access  Public
-exports.deleteTransaction,[authenticate] = async (req, res, next) => {
+exports.deleteTransaction = async (req, res, next) => {
   try {
     const transaction = await Transaction.findById(req.params.id);
 
