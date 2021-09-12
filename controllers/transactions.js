@@ -5,7 +5,7 @@ const Transaction = require('../models/Transaction');
 // @access  Public
 exports.getTransactions = async (req, res, next) => {
   try {
-    const transactions = await Transaction.find({userid : req.userid}).toArray();
+    const transactions = await Transaction.find();
 
     return res.status(200).json({
       success: true,
@@ -26,7 +26,7 @@ exports.getTransactions = async (req, res, next) => {
 exports.addTransaction = async (req, res, next) => {
   try {
     const { text, amount ,date } = req.body;
-    req.body.userid = req.userid;
+    // req.body.userid = req.userid;
 
     const transaction = await Transaction.create(req.body);
   
@@ -56,7 +56,7 @@ exports.addTransaction = async (req, res, next) => {
 // @access  Public
 exports.deleteTransaction = async (req, res, next) => {
   try {
-    const transaction = await Transaction.findById({_id:mongodb.ObjectId(req.params.id)});
+    const transaction = await Transaction.findById(req.params.id);
 
     if(!transaction) {
       return res.status(404).json({
